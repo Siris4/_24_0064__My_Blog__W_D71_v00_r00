@@ -12,11 +12,12 @@ import logging
 
 # Initialize Flask app and Bootstrap
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 Bootstrap(app)
 
 # Direct path to the database
-db_path = 'C:/Users/Siris/Desktop/r00_env_START/instance/posts.db'
+db_path = os.environ.get('FLASK_DB_PATH', 'default_path')
+
 # Ensure the instance folder exists
 instance_folder = os.path.dirname(db_path)
 if not os.path.exists(instance_folder):
